@@ -4,6 +4,7 @@ import {
     Delete,
     Get,
     Param,
+    Patch,
     Post,
     Query,
 } from '@nestjs/common';
@@ -15,7 +16,6 @@ export class PointController {
 
     @Get()
     getAll(@Query() query: GetAllPointParam) {
-        console.log(query);
         return this.pointService.getAll(query);
     }
 
@@ -32,5 +32,10 @@ export class PointController {
     @Post()
     create(@Body() body: CreatePointParam) {
         return this.pointService.create(body);
+    }
+
+    @Patch(':id')
+    edit(@Param('id') id: number, @Body() body: CreatePointParam) {
+        return this.pointService.edit(id, body);
     }
 }
