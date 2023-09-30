@@ -1,10 +1,17 @@
 import { CssBaseline, Grid, styled } from '@mui/material';
 import { ThemeProvider } from 'styled-components';
 
-import { Map } from './components/Map/Map';
 import theme from './theme/theme';
+import { Map, Navbar } from './components';
 
-import Navbar from '../components/Navbar/Navbar';
+const StyledMapContainer = styled(Grid)`
+    width: 100%;
+    height: 100vh;
+`;
+
+const StyledNavbarContainer = styled(Grid)`
+    width: 80px;
+`;
 
 const StyledMapContainer = styled(Grid)`
     width: 100%;
