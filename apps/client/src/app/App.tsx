@@ -13,6 +13,15 @@ const StyledNavbarContainer = styled(Grid)`
     width: 80px;
 `;
 
+const StyledMapContainer = styled(Grid)`
+    width: 100%;
+    height: 100vh;
+`;
+
+const StyledNavbarContainer = styled(Grid)`
+    width: 80px;
+`;
+
 export const App = () => {
     return (
         <ThemeProvider theme={theme}>
