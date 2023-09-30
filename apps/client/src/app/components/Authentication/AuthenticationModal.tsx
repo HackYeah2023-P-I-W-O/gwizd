@@ -15,7 +15,7 @@ const StyledModalBox = styled(Box)`
 export function AuthenticationModal() {
     return (
         <Modal open={true}>
-            <StyledModalBox bgcolor='primary.main'>s</StyledModalBox>
+            <StyledModalBox bgcolor='secondary.main'>s</StyledModalBox>
         </Modal>
     );
 }

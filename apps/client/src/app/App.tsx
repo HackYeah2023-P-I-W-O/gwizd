@@ -1,5 +1,4 @@
-import { CssBaseline, Grid, styled } from '@mui/material';
-import { ThemeProvider } from 'styled-components';
+import { CssBaseline, Grid, styled, ThemeProvider } from '@mui/material';
 
 import theme from './theme/theme';
 import { Map, Navbar } from './components';
