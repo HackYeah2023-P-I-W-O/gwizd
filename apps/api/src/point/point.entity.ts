@@ -28,12 +28,12 @@ export class Point {
     @CreateDateColumn()
     created: Date;
 
-    @Column()
+    @Column({ default: '' })
     description: string;
 
-    @Column()
+    @Column({ default: '' })
     photo: string;
 
-    @Column()
+    @Column({ default: false })
     danger: boolean;
 }
