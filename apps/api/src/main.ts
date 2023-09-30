@@ -22,9 +22,8 @@ async function bootstrap() {
         credentials: true,
     });
 
-    app.useGlobalPipes(
-        new ValidationPipe({ transform: true, whitelist: true }),
-    );
+    //! Add white list: true
+    app.useGlobalPipes(new ValidationPipe({ transform: true }));
     app.useGlobalInterceptors(
         new ClassSerializerInterceptor(app.get(Reflector)),
     );
