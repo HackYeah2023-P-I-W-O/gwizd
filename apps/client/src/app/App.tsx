@@ -3,6 +3,7 @@ import { ThemeProvider } from 'styled-components';
 
 import theme from './theme/theme';
 import { Map, Navbar } from './components';
+import { AuthenticationModal } from './components/Authentication';
 
 const StyledMapContainer = styled(Grid)`
     width: 100%;
@@ -25,6 +26,7 @@ export const App = () => {
                     <Map />
                 </StyledMapContainer>
             </Grid>
+            <AuthenticationModal />
         </ThemeProvider>
     );
 };
