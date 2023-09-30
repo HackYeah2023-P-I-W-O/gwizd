@@ -1,6 +1,10 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+    ConflictException,
+    Injectable,
+    NotFoundException,
+} from '@nestjs/common';
 import { User } from '../user';
-import { Repository } from 'typeorm';
+import { DeepPartial, Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
@@ -8,6 +12,14 @@ export class UserService {
     constructor(
         @InjectRepository(User) private readonly users: Repository<User>,
     ) {}
+
+    async create(user: DeepPartial<User>) {
+        try {
+            return await this.users.save(user);
+        } catch {
+            throw new ConflictException();
+        }
+    }
 
     async getByID(id: string) {
         const user = await this.users.findOne({
