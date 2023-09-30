@@ -34,6 +34,6 @@ export class Point {
     @Column()
     photo: string;
 
-    @Column()
+    @Column({ default: false })
     danger: boolean;
 }
