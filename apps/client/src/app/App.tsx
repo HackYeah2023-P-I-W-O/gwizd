@@ -1,17 +1,7 @@
-import { CssBaseline, Grid, styled } from '@mui/material';
-import { ThemeProvider } from 'styled-components';
+import { CssBaseline, Grid, styled, ThemeProvider } from '@mui/material';
 
 import theme from './theme/theme';
-import { Map, Navbar } from './components';
-
-const StyledMapContainer = styled(Grid)`
-    width: 100%;
-    height: 100vh;
-`;
-
-const StyledNavbarContainer = styled(Grid)`
-    width: 80px;
-`;
+import { Map, Navbar, Drawer } from './components';
 
 export const App = () => {
     return (
@@ -25,6 +15,7 @@ export const App = () => {
                     <Map />
                 </StyledMapContainer>
             </Grid>
+            <Drawer />
         </ThemeProvider>
     );
 };
