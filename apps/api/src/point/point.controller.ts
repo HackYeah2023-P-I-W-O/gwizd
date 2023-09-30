@@ -1,4 +1,12 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import {
+    Body,
+    Controller,
+    Delete,
+    Get,
+    Param,
+    Post,
+    Query,
+} from '@nestjs/common';
 import { PointService } from './point.service';
 import { GetAllPointParam, CreatePointParam } from './parameters/get-all.param';
 @Controller('/point')
@@ -6,8 +14,9 @@ export class PointController {
     constructor(private readonly pointService: PointService) {}
 
     @Get()
-    getAll(@Param() params: GetAllPointParam) {
-        return this.pointService.getAll(params);
+    getAll(@Query() query: GetAllPointParam) {
+        console.log(query);
+        return this.pointService.getAll(query);
     }
 
     @Get(':id')

@@ -5,7 +5,6 @@ import {
     Logger,
 } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-
 import { AppModule } from './app';
 import { ConfigService } from './config';
 
@@ -22,9 +21,8 @@ async function bootstrap() {
         credentials: true,
     });
 
-    app.useGlobalPipes(
-        new ValidationPipe({ transform: true, whitelist: true }),
-    );
+    //! Add white list: true
+    app.useGlobalPipes(new ValidationPipe({ transform: true }));
     app.useGlobalInterceptors(
         new ClassSerializerInterceptor(app.get(Reflector)),
     );

@@ -24,6 +24,12 @@ export class PointService {
         return this.points.delete({ id });
     }
     create(param: CreatePointParam) {
-        return this.points.insert(param);
+        return this.points.insert({
+            category: param.category,
+            location: param.location,
+            description: param.description,
+            photo: param.photo,
+            danger: param.danger,
+        });
     }
 }
