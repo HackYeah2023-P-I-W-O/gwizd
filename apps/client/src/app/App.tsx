@@ -7,8 +7,12 @@ import theme from './theme/theme';
 import Navbar from '../components/Navbar/Navbar';
 
 const StyledMapContainer = styled(Grid)`
-    width: 100vw;
+    width: 100%;
     height: 100vh;
+`;
+
+const StyledNavbarContainer = styled(Grid)`
+    width: 80px;
 `;
 
 export const App = () => {
@@ -16,12 +20,12 @@ export const App = () => {
         <ThemeProvider theme={theme}>
             <CssBaseline />
             <Grid container>
-                <StyledMapContainer item>
+                <StyledNavbarContainer item>
+                    <Navbar />
+                </StyledNavbarContainer>
+                <StyledMapContainer item xs>
                     <Map />
                 </StyledMapContainer>
-                <Grid item>
-                    <Navbar />
-                </Grid>
             </Grid>
         </ThemeProvider>
     );
