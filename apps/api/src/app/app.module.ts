@@ -4,10 +4,7 @@ import { AppController, AppService } from '.';
 import { DatabaseModule } from '../database';
 
 @Module({
-    imports: [
-        ConfigModule,
-        DatabaseModule
-    ],
+    imports: [ConfigModule, DatabaseModule],
     controllers: [AppController],
     providers: [AppService],
 })
