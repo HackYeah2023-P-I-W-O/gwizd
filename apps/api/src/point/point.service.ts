@@ -17,4 +17,10 @@ export class PointService {
             },
         });
     }
+    getOne(id: number) {
+        return this.points.findOne({ where: { id } });
+    }
+    delete(id: number) {
+        return this.points.delete({ id });
+    }
 }
