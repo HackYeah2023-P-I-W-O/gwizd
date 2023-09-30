@@ -1,4 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { compare } from 'bcrypt';
 
 @Entity('users')
 export class User {
@@ -13,4 +14,8 @@ export class User {
 
     @Column()
     passwordHash: string;
+
+    validatePassword(password: string) {
+        return compare(password, this.passwordHash);
+    }
 }
