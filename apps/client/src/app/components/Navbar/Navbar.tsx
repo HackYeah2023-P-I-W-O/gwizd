@@ -7,7 +7,7 @@ const StyledBox = styled(Box)`
     width: 100%;
 `;
 
-function Navbar() {
+export function Navbar() {
     return (
         <Box component={StyledBox}>
             <Stack spacing={2}>
@@ -21,5 +21,3 @@ function Navbar() {
         </Box>
     );
 }
-
-export default Navbar;
