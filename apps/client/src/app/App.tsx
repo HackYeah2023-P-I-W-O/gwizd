@@ -1,9 +1,8 @@
-import { Button, CssBaseline, Grid, styled } from '@mui/material';
+import { CssBaseline, Grid, styled } from '@mui/material';
 import { ThemeProvider } from 'styled-components';
 
-import { Map } from './components/Map/Map';
 import theme from './theme/theme';
-import Navbar from '../components/Navbar/Navbar';
+import { Map, Navbar } from './components';
 
 const StyledMapContainer = styled(Grid)`
     width: 100%;
