@@ -23,9 +23,6 @@ export class Point {
     category: PointCategory;
 
     @Column()
-    user: null;
-
-    @Column()
     location: string;
 
     @CreateDateColumn()

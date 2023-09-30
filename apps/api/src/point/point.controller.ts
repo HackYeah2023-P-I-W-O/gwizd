@@ -1,12 +1,12 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import { PointService } from './point.service';
-
+import { GetAllPointParam } from './parameters/get-all.param';
 @Controller('/point')
 export class PointController {
-    constructor(private readonly PointService: PointService) {}
+    constructor(private readonly pointService: PointService) {}
 
     @Get()
-    getHello(): string {
-        return this.PointService.test();
+    getAll(@Param() params: GetAllPointParam) {
+        return this.pointService.getAll(params);
     }
 }
