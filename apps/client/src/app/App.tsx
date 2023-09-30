@@ -1,12 +1,23 @@
-<<<<<<< HEAD
-export const App = () => {
-    return <></>;
-=======
 import { ThemeProvider } from 'styled-components';
-import './App.css';
+
+import { Map } from './components/Map/Map';
 import theme from './theme/theme';
+import { CssBaseline, Grid, styled } from '@mui/material';
+
+const StyledMapContainer = styled(Grid)`
+    width: 100vw;
+    height: 100vh;
+`;
 
 export const App = () => {
-    return <ThemeProvider theme={theme}></ThemeProvider>;
->>>>>>> master
+    return (
+        <ThemeProvider theme={theme}>
+            <CssBaseline />
+            <Grid container>
+                <StyledMapContainer item>
+                    <Map />
+                </StyledMapContainer>
+            </Grid>
+        </ThemeProvider>
+    );
 };
