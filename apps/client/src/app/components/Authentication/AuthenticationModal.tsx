@@ -1,6 +1,6 @@
 import { AccountCircleOutlined } from '@mui/icons-material';
 import { Box, Button, Modal, Stack, TextField, styled } from '@mui/material';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const API_URL = 'http://localhost:4000';
@@ -57,6 +57,16 @@ export function AuthenticationModal() {
     const [error, setError] = useState('');
     const [modalOpened, setModalOpened] = useState(true);
 
+    useEffect(() => {
+        axios
+            .get(`${API_URL}/auth/@me`, {
+                withCredentials: true,
+            })
+            .then(() => {
+                setModalOpened(false);
+            });
+    }, []);
+
     const handleToggleState = () => {
         setError('');
         setSignup((prev) => !prev);
@@ -80,7 +90,8 @@ export function AuthenticationModal() {
             .post(`${API_URL}/auth/login`, {
                 emailOrUsername: username,
                 password: password,
-            }).then(() => {
+            })
+            .then(() => {
                 setModalOpened(false);
             })
             .catch(() => {
