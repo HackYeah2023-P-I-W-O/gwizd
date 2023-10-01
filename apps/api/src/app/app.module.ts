@@ -1,5 +1,5 @@
 import { Module, MiddlewareConsumer } from '@nestjs/common';
-import { ConfigModule, ConfigService, NodeEnv } from '../config';
+import { ConfigModule, ConfigService } from '../config';
 import { AppController, AppService } from '.';
 import { DatabaseModule } from '../database';
 import { AuthModule } from '../auth';
@@ -34,7 +34,7 @@ export class AppModule {
                         httpOnly: true,
                         secure: 'auto',
                         sameSite:
-                            this.config.NODE_ENV === NodeEnv.DEVELOPMENT
+                            this.config.NODE_ENV === 'development'
                                 ? undefined
                                 : 'none',
                     },
