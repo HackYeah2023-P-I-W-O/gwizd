@@ -6,7 +6,6 @@ type DrawerPropsType = {
     open: boolean;
     onClose: () => void;
 };
-
 const StyledBox = styled(Box)`
     max-width: 500px;
     width: 100vw;

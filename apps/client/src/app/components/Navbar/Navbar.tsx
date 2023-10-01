@@ -12,11 +12,9 @@ const StyledBox = styled(Box)`
     z-index: 1000;
     box-shadow: 0px 0px 16px 10px rgba(0, 0, 0, 0.15);
 `;
-
 const StyledButton = styled(Button)`
     padding: 1.5rem 0;
 `;
-
 export function Navbar() {
     const [openedDrawer, setOpenedDrawer] = useState<
         'animal' | 'profile' | undefined
@@ -25,7 +23,6 @@ export function Navbar() {
     const toggleDrawerHandler = (drawer: 'animal' | 'profile' | undefined) => {
         setOpenedDrawer(drawer);
     };
-
     return (
         <>
             <Box bgcolor='secondary.main' component={StyledBox}>

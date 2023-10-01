@@ -5,26 +5,24 @@ import {
     Logger,
 } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-
 import { AppModule } from './app';
 import { ConfigService } from './config';
 
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
     const env = app.get(ConfigService);
+    app.enableCors();
+    // app.enableCors({
+    //     origin: [
+    //         env.CLIENT_URL,
+    //         new RegExp(env.CLIENT_CORS_WILDCARD_URL),
+    //         'http://localhost',
+    //     ],
+    //     credentials: true,
+    // });
 
-    app.enableCors({
-        origin: [
-            env.CLIENT_URL,
-            new RegExp(env.CLIENT_CORS_WILDCARD_URL),
-            'http://localhost',
-        ],
-        credentials: true,
-    });
-
-    app.useGlobalPipes(
-        new ValidationPipe({ transform: true, whitelist: true }),
-    );
+    //! Add white list: true
+    app.useGlobalPipes(new ValidationPipe({ transform: true }));
     app.useGlobalInterceptors(
         new ClassSerializerInterceptor(app.get(Reflector)),
     );
@@ -32,6 +30,7 @@ async function bootstrap() {
     const config = new DocumentBuilder()
         .setTitle('API Docs')
         .addServer(env.BASE_PATH)
+        .addCookieAuth()
         .build();
 
     const document = SwaggerModule.createDocument(app, config);

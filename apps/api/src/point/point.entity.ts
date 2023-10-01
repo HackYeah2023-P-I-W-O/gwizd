@@ -5,12 +5,18 @@ import {
     CreateDateColumn,
 } from 'typeorm';
 
+import { Point as PointType } from 'geojson';
+
 export enum PointCategory {
     Dog,
     Cat,
     Squirrel,
     Bear,
     Anaconda,
+    Deer,
+    Python,
+    Doe,
+    Trash,
     Other,
 }
 
@@ -22,18 +28,18 @@ export class Point {
     @Column({ default: PointCategory.Other })
     category: PointCategory;
 
-    @Column()
-    location: string;
+    @Column('geometry')
+    location: PointType;
 
     @CreateDateColumn()
     created: Date;
 
-    @Column()
+    @Column({ default: '' })
     description: string;
 
-    @Column()
+    @Column({ default: '' })
     photo: string;
 
-    @Column()
+    @Column({ default: false })
     danger: boolean;
 }
