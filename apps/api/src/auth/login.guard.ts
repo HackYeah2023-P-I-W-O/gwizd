@@ -8,7 +8,7 @@ export class LoginGuard extends AuthGuard('local') {
     async canActivate(context: ExecutionContext) {
         await super.canActivate(context);
 
-        const req: any = context.switchToHttp().getRequest<Request>();
+        const req = context.switchToHttp().getRequest<Request>();
         await super.logIn(req);
 
         return true;

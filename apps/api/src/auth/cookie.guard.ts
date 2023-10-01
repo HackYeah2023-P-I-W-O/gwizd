@@ -5,6 +5,6 @@ import { Request } from 'express';
 export class CookieGuard implements CanActivate {
     async canActivate(context: ExecutionContext) {
         const req = context.switchToHttp().getRequest<Request>();
-        return (req as any).isAuthenticated();
+        return req.isAuthenticated();
     }
 }
