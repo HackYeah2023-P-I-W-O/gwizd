@@ -19,7 +19,6 @@ export function UserDrawer({ open, onClose }: UserPropsType) {
                     <List />
                 </Stack>
             </StyledBox>
-            <List />
         </Drawer>
     );
 }
