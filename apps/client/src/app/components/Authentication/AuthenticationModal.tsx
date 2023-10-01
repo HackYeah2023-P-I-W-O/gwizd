@@ -1,6 +1,9 @@
 import { AccountCircleOutlined } from '@mui/icons-material';
 import { Box, Button, Modal, Stack, TextField, styled } from '@mui/material';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+
+const API_URL = 'http://localhost:4000';
 
 const StyledModalBox = styled(Box)`
     position: absolute;
@@ -48,30 +51,91 @@ const StyledModeBtn = styled(Button)`
 
 export function AuthenticationModal() {
     const [signup, setSignup] = useState(false);
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [passwordRep, setPasswordRep] = useState('');
+    const [error, setError] = useState('');
+    const [modalOpened, setModalOpened] = useState(true);
+
+    useEffect(() => {
+        axios
+            .get(`${API_URL}/auth/@me`, {
+                withCredentials: true,
+            })
+            .then(() => {
+                setModalOpened(false);
+            });
+    }, []);
 
     const handleToggleState = () => {
+        setError('');
         setSignup((prev) => !prev);
     };
 
+    const registerFunc = () => {
+        if (password !== passwordRep) {
+            setError('Passwords do not match!');
+            return;
+        }
+        axios.post(`${API_URL}/auth/register`, {
+            email: `${username}@test.com`,
+            username: username,
+            password: password,
+        });
+        setSignup(false);
+    };
+
+    const loginFunc = () => {
+        axios
+            .post(`${API_URL}/auth/login`, {
+                emailOrUsername: username,
+                password: password,
+            })
+            .then(() => {
+                setModalOpened(false);
+            })
+            .catch(() => {
+                setError('Wrong credentials!');
+            });
+    };
+
     const handleSubmit = (e: React.FormEvent) => {
+        if (signup) {
+            registerFunc();
+        } else {
+            loginFunc();
+        }
         e.preventDefault();
-        console.log('submitted');
     };
 
     return (
-        <Modal open={true}>
+        <Modal open={modalOpened}>
             <StyledModalBox bgcolor='secondary.main'>
                 <Stack width='100%'>
                     <StyledIconBox color='primary.main'>
                         <AccountCircleOutlined />
                     </StyledIconBox>
                     <form onSubmit={handleSubmit}>
-                        <StyledTextField fullWidth label='Username' required />
-                        <StyledTextField fullWidth label='Password' required />
+                        <StyledTextField
+                            fullWidth
+                            label='Username'
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                            required
+                        />
+                        <StyledTextField
+                            fullWidth
+                            label='Password'
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                        />
                         {signup && (
                             <StyledTextField
                                 fullWidth
                                 label='Confirm password'
+                                value={passwordRep}
+                                onChange={(e) => setPasswordRep(e.target.value)}
                                 required
                             />
                         )}
@@ -90,6 +154,7 @@ export function AuthenticationModal() {
                             {signup ? 'Sign in' : 'Sign up'}
                         </StyledModeBtn>
                     </form>
+                    {error}
                 </Stack>
             </StyledModalBox>
         </Modal>
