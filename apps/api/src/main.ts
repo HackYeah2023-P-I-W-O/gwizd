@@ -11,12 +11,13 @@ import { ConfigService } from './config';
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
     const env = app.get(ConfigService);
+
     // app.enableCors({
     //     origin: [
     //         env.CLIENT_URL,
     //         new RegExp(env.CLIENT_CORS_WILDCARD_URL),
     //         'http://localhost',
-    //     ],
+    //     ],laksjdlksad
     //     credentials: true,
     // });
     app.enableCors({
