@@ -11,15 +11,15 @@ import { ConfigService } from './config';
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
     const env = app.get(ConfigService);
-
-    app.enableCors({
-        origin: [
-            env.CLIENT_URL,
-            new RegExp(env.CLIENT_CORS_WILDCARD_URL),
-            'http://localhost',
-        ],
-        credentials: true,
-    });
+    app.enableCors();
+    // app.enableCors({
+    //     origin: [
+    //         env.CLIENT_URL,
+    //         new RegExp(env.CLIENT_CORS_WILDCARD_URL),
+    //         'http://localhost',
+    //     ],
+    //     credentials: true,
+    // });
 
     //! Add white list: true
     app.useGlobalPipes(new ValidationPipe({ transform: true }));
