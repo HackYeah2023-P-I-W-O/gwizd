@@ -11,14 +11,18 @@ export const typography = {
         letterSpacing: 1.5,
     },
     h1: {
-        fontFamily: 'Cookie',
-        fontSize: 96,
-        fontWeight: 400,
+        fontFamily: 'inherit',
+        fontSize: 25,
+        fontWeight: 800,
     },
     h2: {
-        fontFamily: 'Roboto Slab',
-        fontSize: 24,
+        fontSize: 15,
         fontWeight: 400,
-        letterSpacing: 8,
+        letterSpacing: 2,
+    },
+    h3: {
+        fontSize: 12,
+        fontWeight: 400,
+        letterSpacing: 2,
     },
 };

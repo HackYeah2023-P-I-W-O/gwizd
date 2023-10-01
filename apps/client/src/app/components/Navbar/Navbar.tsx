@@ -1,7 +1,9 @@
 import { Box, Stack, styled, Button } from '@mui/material';
-
 import { Menu } from '@mui/icons-material';
 import { AccountCircleOutlined } from '@mui/icons-material';
+import { useState } from 'react';
+import { AnimalDrawer } from '../AnimalDrawer';
+import { UserDrawer } from '../UserDrawer';
 
 const StyledBox = styled(Box)`
     width: 100%;
@@ -16,16 +18,36 @@ const StyledButton = styled(Button)`
 `;
 
 export function Navbar() {
+    const [openedDrawer, setOpenedDrawer] = useState<
+        'animal' | 'profile' | undefined
+    >(undefined);
+
+    const toggleDrawerHandler = (drawer: 'animal' | 'profile' | undefined) => {
+        setOpenedDrawer(drawer);
+    };
+
     return (
-        <Box bgcolor='secondary.main' component={StyledBox}>
-            <Stack>
-                <StyledButton>
-                    <Menu />
-                </StyledButton>
-                <StyledButton>
-                    <AccountCircleOutlined />
-                </StyledButton>
-            </Stack>
-        </Box>
+        <>
+            <Box bgcolor='secondary.main' component={StyledBox}>
+                <Stack>
+                    <StyledButton onClick={() => toggleDrawerHandler('animal')}>
+                        <Menu />
+                    </StyledButton>
+                    <StyledButton
+                        onClick={() => toggleDrawerHandler('profile')}
+                    >
+                        <AccountCircleOutlined />
+                    </StyledButton>
+                </Stack>
+            </Box>
+            <AnimalDrawer
+                open={openedDrawer === 'animal'}
+                onClose={() => toggleDrawerHandler(undefined)}
+            />
+            <UserDrawer
+                open={openedDrawer === 'profile'}
+                onClose={() => toggleDrawerHandler(undefined)}
+            />
+        </>
     );
 }
