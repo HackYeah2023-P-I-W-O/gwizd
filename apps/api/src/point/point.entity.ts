@@ -13,6 +13,10 @@ export enum PointCategory {
     Squirrel,
     Bear,
     Anaconda,
+    Deer,
+    Python,
+    Doe,
+    Trash,
     Other,
 }
 
