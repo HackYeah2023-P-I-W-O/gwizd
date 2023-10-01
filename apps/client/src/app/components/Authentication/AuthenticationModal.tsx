@@ -90,6 +90,8 @@ export function AuthenticationModal() {
             .post(`${API_URL}/auth/login`, {
                 emailOrUsername: username,
                 password: password,
+            },
+            {
                 withCredentials: true,
             })
             .then(() => {
