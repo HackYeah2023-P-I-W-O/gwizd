@@ -1,7 +1,16 @@
 import { CssBaseline, Grid, styled, ThemeProvider } from '@mui/material';
 
 import theme from './theme/theme';
-import { Map, Navbar, Drawer, AuthenticationModal } from './components';
+import { Map, Navbar, AuthenticationModal } from './components';
+
+const StyledMapContainer = styled(Grid)`
+    width: 100%;
+    height: 100vh;
+`;
+
+const StyledNavbarContainer = styled(Grid)`
+    width: 80px;
+`;
 
 export const App = () => {
     return (
@@ -16,7 +25,6 @@ export const App = () => {
                 </StyledMapContainer>
             </Grid>
             <AuthenticationModal />
-            <Drawer />
         </ThemeProvider>
     );
 };
