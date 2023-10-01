@@ -5,7 +5,6 @@ import {
     Logger,
 } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-
 import { AppModule } from './app';
 import { ConfigService } from './config';
 
