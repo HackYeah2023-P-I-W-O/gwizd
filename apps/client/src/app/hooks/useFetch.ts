@@ -1,3 +1,4 @@
+import axios, { AxiosResponse } from 'axios';
 import { useState } from 'react';
 
 export function useFetch() {
@@ -5,12 +6,11 @@ export function useFetch() {
 
     const refetch = async (
         URL: string,
-        applyFn: (data: Record<string, string>) => void,
+        applyFn: (data: AxiosResponse) => void,
     ) => {
         setLoading(true);
         try {
-            const res = await fetch(URL);
-            const data = await res.json();
+            const data = await axios.get(URL);
 
             applyFn(data);
         } catch (err) {
